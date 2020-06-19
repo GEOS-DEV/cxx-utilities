@@ -1,11 +1,18 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
+
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/arrayobject.h>
 #include "numpyConversion.h"
- 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 static PyObject *
 create_np_array(PyObject *self, PyObject *args)
 {
+    (void) self;
     int start;
     int stop;
     int * dataPointer;
@@ -38,6 +45,8 @@ create_np_array(PyObject *self, PyObject *args)
 static PyObject *
 print_array(PyObject *self, PyObject *args)
 {
+    (void) self;
+    (void) args;
     printSortedArray();
     Py_RETURN_NONE;
 }
@@ -46,6 +55,7 @@ print_array(PyObject *self, PyObject *args)
 static PyObject *
 set_sorted_array(PyObject *self, PyObject *args)
 {
+    (void) self;
     int start;
     int stop;
     if (!PyArg_ParseTuple(args, "ii", &start, &stop))
@@ -60,6 +70,8 @@ set_sorted_array(PyObject *self, PyObject *args)
 static PyObject *
 get_sorted_array(PyObject *self, PyObject *args)
 {
+    (void) self;
+    (void) args;
     return getSortedArray();
 }
 
@@ -77,19 +89,27 @@ static PyMethodDef TestingMethods[] = {
 };
 
 
-static struct PyModuleDef _lvarraymodule = {
+static struct PyModuleDef _lvarrayPythonInterfacemodule = {
     PyModuleDef_HEAD_INIT,
-    "lvarray",   /* name of module */
-    "Module for testing lvarray conversions", /* module documentation, may be NULL */
+    "lvarrayPythonInterface",   /* name of module */
+    "Module for testing lvarrayPythonInterface conversions", /* module documentation, may be NULL */
     -1,       /* size of per-interpreter state of the module,
                  or -1 if the module keeps state in global variables. */
-    TestingMethods
+    TestingMethods,
+    NULL,
+    NULL,
+    NULL,
+    NULL
 };
 
 
 PyMODINIT_FUNC
-PyInit_lvarray(void)
+PyInit_lvarrayPythonInterface(void)
 {
     import_array();
-    return PyModule_Create(&_lvarraymodule);
+    return PyModule_Create(&_lvarrayPythonInterfacemodule);
 }
+
+#ifdef __cplusplus
+}
+#endif

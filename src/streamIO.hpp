@@ -363,7 +363,7 @@ std::ostream & operator<< ( std::ostream & stream,
     return stream;
   }
 
-  stream << "{ " << view[ 0 ];
+  stream << "{ ";
 
   if( view.size() > 0 )
     stream << view[ 0 ];

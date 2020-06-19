@@ -1,7 +1,6 @@
 add_subdirectory(docs)
 
-    
-        set(lvarray_headers
+set(lvarray_headers
     templateHelpers.hpp
     Array.hpp
     ArraySlice.hpp
@@ -47,14 +46,16 @@ set(lvarray_sources
 
 
 message("adding lvarray library")
-blt_add_library( NAME             lvarray
-                 SOURCES          ${lvarray_sources}
-                 HEADERS          ${lvarray_headers}
-                 DEPENDS_ON       ${lvarray_dependencies}
-                 )
+blt_add_library(NAME             lvarray
+                SOURCES          ${lvarray_sources}
+                HEADERS          ${lvarray_headers}
+                DEPENDS_ON       ${lvarray_dependencies}
+                )
 
-target_include_directories( lvarray PUBLIC ${CMAKE_BINARY_DIR}/include )
+target_include_directories(lvarray PUBLIC ${CMAKE_BINARY_DIR}/include )
 
-lvarray_add_code_checks( PREFIX lvarray
-                         EXCLUDES "blt/*" )
+lvarray_add_code_checks(PREFIX lvarray
+                        EXCLUDES "blt/*" )
 
+
+add_subdirectory(python)
