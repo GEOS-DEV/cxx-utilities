@@ -693,9 +693,9 @@ using ArrayOfArraysTestTypes = ::testing::Types<
   , ArrayOfArrays< Tensor, INDEX_TYPE, MallocBuffer >
   , ArrayOfArrays< TestString, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , ArrayOfArrays< int, INDEX_TYPE, NewChaiBuffer >
-  , ArrayOfArrays< Tensor, INDEX_TYPE, NewChaiBuffer >
-  , ArrayOfArrays< TestString, INDEX_TYPE, NewChaiBuffer >
+  , ArrayOfArrays< int, INDEX_TYPE, ChaiBuffer >
+  , ArrayOfArrays< Tensor, INDEX_TYPE, ChaiBuffer >
+  , ArrayOfArrays< TestString, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 TYPED_TEST_SUITE( ArrayOfArraysTest, ArrayOfArraysTestTypes, );
@@ -1312,14 +1312,14 @@ using ArrayOfArraysViewTestTypes = ::testing::Types<
   , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, MallocBuffer >, serialPolicy >
   , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< ArrayOfArrays< int, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfArrays< int, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< ArrayOfArrays< int, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< ArrayOfArrays< int, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 TYPED_TEST_SUITE( ArrayOfArraysViewTest, ArrayOfArraysViewTestTypes, );
@@ -1484,9 +1484,9 @@ using ArrayOfArraysViewAtomicTestTypes = ::testing::Types<
   , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, MallocBuffer >, serialPolicy >
   , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< ArrayOfArrays< int, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfArrays< int, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_OPENMP)
@@ -1495,14 +1495,14 @@ using ArrayOfArraysViewAtomicTestTypes = ::testing::Types<
   , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, MallocBuffer >, parallelHostPolicy >
 #endif
 #if defined(USE_OPENMP) && defined(USE_CHAI)
-  , std::pair< ArrayOfArrays< int, INDEX_TYPE, NewChaiBuffer >, parallelHostPolicy >
-  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, NewChaiBuffer >, parallelHostPolicy >
-  , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, NewChaiBuffer >, parallelHostPolicy >
+  , std::pair< ArrayOfArrays< int, INDEX_TYPE, ChaiBuffer >, parallelHostPolicy >
+  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, ChaiBuffer >, parallelHostPolicy >
+  , std::pair< ArrayOfArrays< TestString, INDEX_TYPE, ChaiBuffer >, parallelHostPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< ArrayOfArrays< int, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< ArrayOfArrays< int, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< ArrayOfArrays< Tensor, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 TYPED_TEST_SUITE( ArrayOfArraysViewAtomicTest, ArrayOfArraysViewAtomicTestTypes, );

@@ -256,9 +256,9 @@ using TestTypes = ::testing::Types<
   , SortedArray< Tensor, INDEX_TYPE, MallocBuffer >
   , SortedArray< TestString, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , SortedArray< int, INDEX_TYPE, NewChaiBuffer >
-  , SortedArray< Tensor, INDEX_TYPE, NewChaiBuffer >
-  , SortedArray< TestString, INDEX_TYPE, NewChaiBuffer >
+  , SortedArray< int, INDEX_TYPE, ChaiBuffer >
+  , SortedArray< Tensor, INDEX_TYPE, ChaiBuffer >
+  , SortedArray< TestString, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 TYPED_TEST_SUITE( SortedArrayTest, TestTypes, );
@@ -451,14 +451,14 @@ using SortedArrayViewTestTypes = ::testing::Types<
   , std::pair< SortedArray< TestString, INDEX_TYPE, MallocBuffer >, serialPolicy >
 
 #if defined(USE_CHAI)
-  , std::pair< SortedArray< int, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< SortedArray< Tensor, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< SortedArray< TestString, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< SortedArray< int, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< SortedArray< Tensor, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< SortedArray< TestString, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< SortedArray< int, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< SortedArray< Tensor, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< SortedArray< int, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< SortedArray< Tensor, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 TYPED_TEST_SUITE( SortedArrayViewTest, SortedArrayViewTestTypes, );

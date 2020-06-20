@@ -1,18 +1,26 @@
-SimUtils
+LvArray
 =================================
 
-SimUtils is a collection of modular tools that may be used to assist in the development of 
+LvArray is a collection of array classes designed to assist in the development of 
 simulation code.
-
-
-
 
 .. toctree::
    :numbered:
    :maxdepth: 1
 
-   docs/sphinx/LvArray
-   
+   buildGuide
+   bufferClasses
+   Array
+   SortedArray
+   ArrayOfArrays
+   ArrayOfSets
+   SparsityPatternAndCRSMatrix
+   tensorOps
+   extraThings
+   developmentAids
+   testing
+   benchmarking
+
 Indices and tables
 ==================
 

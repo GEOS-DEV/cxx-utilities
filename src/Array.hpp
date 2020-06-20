@@ -360,7 +360,7 @@ public:
   /**
    * @brief @return Return the maximum number of values the Array can hold without reallocation.
    */
-  LVARRAY_HOST_DEVICE
+  LVARRAY_HOST_DEVICE constexpr
   INDEX_TYPE capacity() const
   { return LvArray::integerConversion< INDEX_TYPE >( m_dataBuffer.capacity() ); }
 

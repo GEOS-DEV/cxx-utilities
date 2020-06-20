@@ -572,9 +572,9 @@ using ArrayOfSetsTestTypes = ::testing::Types<
   , ArrayOfSets< Tensor, INDEX_TYPE, MallocBuffer >
   , ArrayOfSets< TestString, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , ArrayOfSets< int, INDEX_TYPE, NewChaiBuffer >
-  , ArrayOfSets< Tensor, INDEX_TYPE, NewChaiBuffer >
-  , ArrayOfSets< TestString, INDEX_TYPE, NewChaiBuffer >
+  , ArrayOfSets< int, INDEX_TYPE, ChaiBuffer >
+  , ArrayOfSets< Tensor, INDEX_TYPE, ChaiBuffer >
+  , ArrayOfSets< TestString, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 TYPED_TEST_SUITE( ArrayOfSetsTest, ArrayOfSetsTestTypes, );
@@ -966,14 +966,14 @@ using ArrayOfSetsViewTestTypes = ::testing::Types<
   , std::pair< ArrayOfSets< Tensor, INDEX_TYPE, MallocBuffer >, serialPolicy >
   , std::pair< ArrayOfSets< TestString, INDEX_TYPE, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< ArrayOfSets< int, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< ArrayOfSets< Tensor, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< ArrayOfSets< TestString, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfSets< int, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfSets< Tensor, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< ArrayOfSets< TestString, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< ArrayOfSets< int, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< ArrayOfSets< Tensor, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< ArrayOfSets< int, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< ArrayOfSets< Tensor, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 

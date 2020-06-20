@@ -307,6 +307,7 @@ static void stringToArray( Array< T, NDIM, PERMUTATION, INDEX_TYPE, BUFFER_TYPE 
  * @param slice The slice to output.
  * @return @p stream .
  */
+// Sphinx start after Array stream IO
 template< typename T, int NDIM, int USD, typename INDEX_TYPE >
 std::ostream & operator<<( std::ostream & stream,
                            ArraySlice< T, NDIM, USD, INDEX_TYPE > const & slice )
@@ -314,16 +315,15 @@ std::ostream & operator<<( std::ostream & stream,
   stream << "{ ";
 
   if( slice.size( 0 ) > 0 )
-    stream << slice[ 0 ];
+  { stream << slice[ 0 ]; }
 
   for( INDEX_TYPE i = 1; i < slice.size( 0 ); ++i )
-  {
-    stream << ", " << slice[ i ];
-  }
+  { stream << ", " << slice[ i ]; }
 
   stream << " }";
   return stream;
 }
+// Sphinx end before Array stream IO
 
 /**
  * @tparam T The type of the values in @p view.

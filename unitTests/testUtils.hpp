@@ -30,7 +30,7 @@
 #include "Macros.hpp"
 
 #if defined(USE_CHAI)
-#include "NewChaiBuffer.hpp"
+#include "ChaiBuffer.hpp"
 #else
 #include "MallocBuffer.hpp"
 #endif
@@ -118,7 +118,7 @@ struct PairComp
 
 #if defined(USE_CHAI)
 template< typename T >
-using DEFAULT_BUFFER = NewChaiBuffer< T >;
+using DEFAULT_BUFFER = ChaiBuffer< T >;
 #else
 template< typename T >
 using DEFAULT_BUFFER = MallocBuffer< T >;

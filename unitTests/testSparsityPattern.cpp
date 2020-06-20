@@ -550,8 +550,8 @@ using SparsityPatternTestTypes = ::testing::Types<
   SparsityPattern< int, INDEX_TYPE, MallocBuffer >
   , SparsityPattern< uint, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , SparsityPattern< int, INDEX_TYPE, NewChaiBuffer >
-  , SparsityPattern< uint, INDEX_TYPE, NewChaiBuffer >
+  , SparsityPattern< int, INDEX_TYPE, ChaiBuffer >
+  , SparsityPattern< uint, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 TYPED_TEST_SUITE( SparsityPatternTest, SparsityPatternTestTypes, );
@@ -1004,13 +1004,13 @@ using SparsityPatternViewTestTypes = ::testing::Types<
   std::pair< SparsityPattern< int, INDEX_TYPE, MallocBuffer >, serialPolicy >
   , std::pair< SparsityPattern< uint, INDEX_TYPE, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< SparsityPattern< int, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< SparsityPattern< uint, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< SparsityPattern< int, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< SparsityPattern< uint, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< SparsityPattern< int, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< SparsityPattern< uint, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< SparsityPattern< int, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< SparsityPattern< uint, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 
@@ -1159,9 +1159,9 @@ using CRSMatrixTestTypes = ::testing::Types<
   , CRSMatrix< Tensor, int, INDEX_TYPE, MallocBuffer >
   , CRSMatrix< TestString, int, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , CRSMatrix< int, int, INDEX_TYPE, NewChaiBuffer >
-  , CRSMatrix< Tensor, int, INDEX_TYPE, NewChaiBuffer >
-  , CRSMatrix< TestString, int, INDEX_TYPE, NewChaiBuffer >
+  , CRSMatrix< int, int, INDEX_TYPE, ChaiBuffer >
+  , CRSMatrix< Tensor, int, INDEX_TYPE, ChaiBuffer >
+  , CRSMatrix< TestString, int, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 TYPED_TEST_SUITE( CRSMatrixTest, CRSMatrixTestTypes, );

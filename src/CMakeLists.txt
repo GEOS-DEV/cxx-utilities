@@ -1,7 +1,4 @@
-add_subdirectory(docs)
-
-    
-        set(lvarray_headers
+set(lvarray_headers
     templateHelpers.hpp
     Array.hpp
     ArraySlice.hpp
@@ -31,7 +28,7 @@ add_subdirectory(docs)
     totalview/tv_data_display.h
     Permutation.hpp
     bufferManipulation.hpp
-    NewChaiBuffer.hpp
+    ChaiBuffer.hpp
     MallocBuffer.hpp
     tensorOps.hpp
     sliceHelpers.hpp
@@ -57,4 +54,3 @@ target_include_directories( lvarray PUBLIC ${CMAKE_BINARY_DIR}/include )
 
 lvarray_add_code_checks( PREFIX lvarray
                          EXCLUDES "blt/*" )
-

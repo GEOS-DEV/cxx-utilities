@@ -79,8 +79,8 @@ using BufferAPITestTypes = ::testing::Types<
   , MallocBuffer< int >
   , MallocBuffer< TestString >
 #if defined(USE_CHAI)
-  , NewChaiBuffer< int >
-  , NewChaiBuffer< TestString >
+  , ChaiBuffer< int >
+  , ChaiBuffer< TestString >
 #endif
   >;
 
@@ -540,7 +540,7 @@ TYPED_TEST( BufferTestNoRealloc, copyInto )
     bufferManipulation::free( copy, NO_REALLOC_CAPACITY );
   },
   #if defined(USE_CHAI)
-    NewChaiBuffer< typename TypeParam::value_type >( true ),
+    ChaiBuffer< typename TypeParam::value_type >( true ),
   #endif
     MallocBuffer< typename TypeParam::value_type >( true )
     // I would like to copInto a StackBuffer but that doesn't work with std::string.
@@ -636,8 +636,8 @@ using BufferTestWithReallocTypes = ::testing::Types<
   MallocBuffer< int >
   , MallocBuffer< TestString >
 #if defined(USE_CHAI)
-  , NewChaiBuffer< int >
-  , NewChaiBuffer< TestString >
+  , ChaiBuffer< int >
+  , ChaiBuffer< TestString >
 #endif
   >;
 
@@ -709,8 +709,8 @@ TYPED_TEST( BufferTestWithRealloc, combination )
 
 // TODO:
 // BufferTestNoRealloc on device with StackBuffer + MallocBuffer
-// Move tests with NewChaiBuffer
-// Copy-capture tests with NewChaiBuffer
+// Move tests with ChaiBuffer
+// Copy-capture tests with ChaiBuffer
 
 } // namespace testing
 } // namespace LvArray

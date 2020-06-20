@@ -84,11 +84,11 @@ inline MemorySpace toMemorySpace( chai::ExecutionSpace const space )
 
 /**
  * @tparam T type of data that is contained in the buffer.
- * @class NewChaiBuffer
+ * @class ChaiBuffer
  * @brief Implements the Buffer interface using CHAI.
- * @details The NewChaiBuffer's allocation can exist in multiple memory spaces. If the chai
+ * @details The ChaiBuffer's allocation can exist in multiple memory spaces. If the chai
  *   execution space is set the copy constructor will ensure that the newly constructed
- *   NewChaiBuffer's pointer points to memory in that space. If the memory does
+ *   ChaiBuffer's pointer points to memory in that space. If the memory does
  *   exist it will be allocated and the data copied over. If the memory exists but the data has been
  *   touched (modified) in the current space it will be copied over. The data is touched in the
  *   new space if T is non const and is not touched if T is const.
@@ -96,26 +96,26 @@ inline MemorySpace toMemorySpace( chai::ExecutionSpace const space )
  *   of the source. Similarly the destructor does not free the allocation.
  */
 template< typename T >
-class NewChaiBuffer
+class ChaiBuffer
 {
 public:
 
   /// Alias for T used used in the bufferManipulation functions.
   using value_type = T;
 
-  /// A flag indicating that the NewChaiBuffer's copy semantics are shallow.
+  /// A flag indicating that the ChaiBuffer's copy semantics are shallow.
   constexpr static bool hasShallowCopy = true;
 
   /// An alias for the non const version of T.
   using T_non_const = std::remove_const_t< T >;
 
   /**
-   * @brief Default constructor, creates an uninitialized NewChaiBuffer.
-   * @details An uninitialized NewChaiBuffer is an undefined state and may only be assigned to.
-   *   An uninitialized NewChaiBuffer holds no recources and does not need to be free'd.
+   * @brief Default constructor, creates an uninitialized ChaiBuffer.
+   * @details An uninitialized ChaiBuffer is an undefined state and may only be assigned to.
+   *   An uninitialized ChaiBuffer holds no recources and does not need to be free'd.
    */
   LVARRAY_HOST_DEVICE inline constexpr
-  NewChaiBuffer():
+  ChaiBuffer():
     m_pointer( nullptr ),
     m_capacity( 0 ),
     m_pointer_record( nullptr )
@@ -126,7 +126,7 @@ public:
    * @details An empty buffer may hold resources and needs to be free'd.
    * @note The unused boolean parameter is to distinguish this from default constructor.
    */
-  NewChaiBuffer( bool ):
+  ChaiBuffer( bool ):
     m_pointer( nullptr ),
     m_capacity( 0 ),
     m_pointer_record( new chai::PointerRecord{} )
@@ -147,7 +147,7 @@ public:
    *   is set *this will contain a pointer the the allocation in that space.
    */
   LVARRAY_HOST_DEVICE inline
-  NewChaiBuffer( NewChaiBuffer const & src ):
+  ChaiBuffer( ChaiBuffer const & src ):
     m_pointer( src.m_pointer ),
     m_capacity( src.m_capacity ),
     m_pointer_record( src.m_pointer_record )
@@ -158,13 +158,13 @@ public:
   }
 
   /**
-   * @copydoc NewChaiBuffer( NewChaiBuffer const & )
+   * @copydoc ChaiBuffer( ChaiBuffer const & )
    * @param size The number of values in the allocation.
    * @note This method should be preffered over the copy constructor when the size information
    *   is available.
    */
   LVARRAY_HOST_DEVICE inline
-  NewChaiBuffer( NewChaiBuffer const & src, std::ptrdiff_t const size ):
+  ChaiBuffer( ChaiBuffer const & src, std::ptrdiff_t const size ):
     m_pointer( src.m_pointer ),
     m_capacity( src.m_capacity ),
     m_pointer_record( src.m_pointer_record )
@@ -178,10 +178,10 @@ public:
 
   /**
    * @brief Move constructor.
-   * @param src The NewChaiBuffer to be moved from, is uninitialized after this call.
+   * @param src The ChaiBuffer to be moved from, is uninitialized after this call.
    */
   LVARRAY_HOST_DEVICE inline constexpr
-  NewChaiBuffer( NewChaiBuffer && src ):
+  ChaiBuffer( ChaiBuffer && src ):
     m_pointer( src.m_pointer ),
     m_capacity( src.m_capacity ),
     m_pointer_record( src.m_pointer_record )
@@ -193,11 +193,11 @@ public:
 
   /**
    * @brief Copy assignment operator.
-   * @param src The NewChaiBuffer to be copied.
+   * @param src The ChaiBuffer to be copied.
    * @return *this.
    */
   LVARRAY_HOST_DEVICE inline constexpr
-  NewChaiBuffer & operator=( NewChaiBuffer const & src )
+  ChaiBuffer & operator=( ChaiBuffer const & src )
   {
     m_capacity = src.m_capacity;
     m_pointer = src.m_pointer;
@@ -207,11 +207,11 @@ public:
 
   /**
    * @brief Move assignment operator.
-   * @param src The NewChaiBuffer to be moved from, is uninitialized after this call.
+   * @param src The ChaiBuffer to be moved from, is uninitialized after this call.
    * @return *this.
    */
   LVARRAY_HOST_DEVICE inline constexpr
-  NewChaiBuffer & operator=( NewChaiBuffer && src )
+  ChaiBuffer & operator=( ChaiBuffer && src )
   {
     m_capacity = src.m_capacity;
     m_pointer = src.m_pointer;
@@ -222,7 +222,7 @@ public:
     src.m_pointer_record = nullptr;
 
     return *this;
-  }
+  }  
 
   /**
    * @brief Reallocate the buffer to the new capacity.
@@ -364,7 +364,7 @@ public:
    * @brief Set the name associated with this buffer which is used in the chai callback.
    * @param name the of the buffer.
    */
-  template< typename U=NewChaiBuffer< T > >
+  template< typename U=ChaiBuffer< T > >
   void setName( std::string const & name )
   {
     std::string const typeString = LvArray::demangle( typeid( U ).name() );

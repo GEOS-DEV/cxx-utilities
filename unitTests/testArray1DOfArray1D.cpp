@@ -228,13 +228,13 @@ using Array1DOfArray1DTestTypes = ::testing::Types<
   , std::pair< Array1D< Tensor, MallocBuffer >, serialPolicy >
   , std::pair< Array1D< TestString, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< Array1D< int, NewChaiBuffer >, serialPolicy >
-  , std::pair< Array1D< Tensor, NewChaiBuffer >, serialPolicy >
-  , std::pair< Array1D< TestString, NewChaiBuffer >, serialPolicy >
+  , std::pair< Array1D< int, ChaiBuffer >, serialPolicy >
+  , std::pair< Array1D< Tensor, ChaiBuffer >, serialPolicy >
+  , std::pair< Array1D< TestString, ChaiBuffer >, serialPolicy >
 #endif
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< Array1D< int, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< Array1D< Tensor, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< Array1D< int, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< Array1D< Tensor, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 

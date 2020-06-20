@@ -47,8 +47,8 @@ using namespace testing;
 
 
 #if defined(USE_CHAI)
-static_assert( std::is_same< DEFAULT_BUFFER< int >, NewChaiBuffer< int > >::value,
-               "The default buffer should be NewChaiBuffer when chai is enabled." );
+static_assert( std::is_same< DEFAULT_BUFFER< int >, ChaiBuffer< int > >::value,
+               "The default buffer should be ChaiBuffer when chai is enabled." );
 #endif
 
 namespace benchmarking

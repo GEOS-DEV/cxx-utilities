@@ -546,9 +546,9 @@ using CRSMatrixTestTypes = ::testing::Types<
   , CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, MallocBuffer >
   , CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , CRSMatrix< int, COL_TYPE, INDEX_TYPE, NewChaiBuffer >
-  , CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, NewChaiBuffer >
-  , CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, NewChaiBuffer >
+  , CRSMatrix< int, COL_TYPE, INDEX_TYPE, ChaiBuffer >
+  , CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, ChaiBuffer >
+  , CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 TYPED_TEST_SUITE( CRSMatrixTest, CRSMatrixTestTypes, );
@@ -662,8 +662,10 @@ TYPED_TEST( CRSMatrixTest, compress )
   this->compress();
 }
 
+// Sphinx start after CRSMatrixViewTest
 template< typename CRS_MATRIX_POLICY_PAIR >
 class CRSMatrixViewTest : public CRSMatrixTest< typename CRS_MATRIX_POLICY_PAIR::first_type >
+// Sphinx end before CRSMatrixViewTest
 {
 public:
 
@@ -1029,19 +1031,21 @@ protected:
   ViewType const & m_view;
 };
 
+// Sphinx start after CRSMatrixViewTestTypes
 using CRSMatrixViewTestTypes = ::testing::Types<
   std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, MallocBuffer >, serialPolicy >
+// Sphinx end before CRSMatrixViewTestTypes
   , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, MallocBuffer >, serialPolicy >
   , std::pair< CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 
@@ -1249,9 +1253,9 @@ using CRSMatrixViewAtomicTestTypes = ::testing::Types<
   , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, MallocBuffer >, serialPolicy >
   , std::pair< CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, MallocBuffer >, serialPolicy >
 #if defined(USE_CHAI)
-  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
-  , std::pair< CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, serialPolicy >
+  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< CRSMatrix< Tensor, COL_TYPE, INDEX_TYPE, ChaiBuffer >, serialPolicy >
+  , std::pair< CRSMatrix< TestString, COL_TYPE, INDEX_TYPE, ChaiBuffer >, serialPolicy >
 #endif
 
 #if defined(USE_OPENMP)
@@ -1259,13 +1263,13 @@ using CRSMatrixViewAtomicTestTypes = ::testing::Types<
   , std::pair< CRSMatrix< double, COL_TYPE, INDEX_TYPE, MallocBuffer >, parallelHostPolicy >
 #endif
 #if defined(USE_OPENMP) && defined(USE_CHAI)
-  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, parallelHostPolicy >
-  , std::pair< CRSMatrix< double, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, parallelHostPolicy >
+  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, ChaiBuffer >, parallelHostPolicy >
+  , std::pair< CRSMatrix< double, COL_TYPE, INDEX_TYPE, ChaiBuffer >, parallelHostPolicy >
 #endif
 
 #if defined(USE_CUDA) && defined(USE_CHAI)
-  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
-  , std::pair< CRSMatrix< double, COL_TYPE, INDEX_TYPE, NewChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< CRSMatrix< int, COL_TYPE, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
+  , std::pair< CRSMatrix< double, COL_TYPE, INDEX_TYPE, ChaiBuffer >, parallelDevicePolicy< 32 > >
 #endif
   >;
 

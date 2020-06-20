@@ -58,7 +58,7 @@ namespace LvArray
  * copy will trigger the desired data motion onto the appropriate memory space.
  *
  * Key features:
- * 1) When using a NewChaiBuffer as the BUFFER_TYPE the ArrayView copy constructor will move the data
+ * 1) When using a ChaiBuffer as the BUFFER_TYPE the ArrayView copy constructor will move the data
  *    to the current execution space.
  * 2) Defines a slicing operator[].
  * 3) Defines operator() array accessor.
@@ -118,7 +118,7 @@ public:
    * @brief Copy Constructor.
    * @param source The object to copy.
    * @note The copy constructor will trigger the copy constructor for @tparam BUFFER_TYPE. When using the
-   *   NewChaiBuffer this can move the underlying buffer to a new memory space if the execution context is set.
+   *   ChaiBuffer this can move the underlying buffer to a new memory space if the execution context is set.
    * @return *this
    */
   DISABLE_HD_WARNING

@@ -209,9 +209,9 @@ using Array1DTestTypes = ::testing::Types<
   , Array< Tensor, 1, RAJA::PERM_I, INDEX_TYPE, MallocBuffer >
   , Array< TestString, 1, RAJA::PERM_I, INDEX_TYPE, MallocBuffer >
 #if defined(USE_CHAI)
-  , Array< int, 1, RAJA::PERM_I, INDEX_TYPE, NewChaiBuffer >
-  , Array< Tensor, 1, RAJA::PERM_I, INDEX_TYPE, NewChaiBuffer >
-  , Array< TestString, 1, RAJA::PERM_I, INDEX_TYPE, NewChaiBuffer >
+  , Array< int, 1, RAJA::PERM_I, INDEX_TYPE, ChaiBuffer >
+  , Array< Tensor, 1, RAJA::PERM_I, INDEX_TYPE, ChaiBuffer >
+  , Array< TestString, 1, RAJA::PERM_I, INDEX_TYPE, ChaiBuffer >
 #endif
   >;
 
